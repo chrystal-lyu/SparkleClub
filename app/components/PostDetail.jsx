@@ -1,6 +1,9 @@
 import React from 'react';
 
 import jsonData from 'json-loader!../article/data.json';
+import AddComment from 'AddComment';
+import Comment from 'Comment';
+import CommentList from 'CommentList';
 
 export class PostDetail extends React.Component {
   constructor (props) {
@@ -25,6 +28,7 @@ export class PostDetail extends React.Component {
     	color:'red',
     	fontWeight:'bold'
     };
+
     return (
       <div>
         Post Detail
@@ -33,6 +37,8 @@ export class PostDetail extends React.Component {
         <div>{date}</div>
         <div>{author}</div>
         <p>{text}</p>
+        <AddComment/>
+        <CommentList comments={comments}/>
       </div>
     );
   };

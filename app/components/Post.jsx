@@ -1,5 +1,8 @@
 import React from 'react';
 import {Link, IndexLink} from 'react-router';
+import {connect} from 'react-redux';
+
+import * as actions from 'actions';
 
 export class Post extends React.Component {
   render () {

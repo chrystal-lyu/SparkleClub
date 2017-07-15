@@ -1,26 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Route, Router, IndexRoute, hashHistory} from 'react-router';
+import {Provider} from 'react-redux';
 
-import About from 'About';
-import BlogApp from 'BlogApp';
-import Main from 'Main';
-import PostDetail from 'PostDetail';
+import * as actions from 'actions';
+import jsonData from 'json-loader!./article/data.json';
+// var store = require('configStore').configure();
+import router from 'app/router/';
 
 // Load foundation
 $(document).foundation();
+
+console.log('initialState', jsonData.posts);
+console.log('Post 0 comments', jsonData.posts[0].comments);
+console.log('Post 1 comments', jsonData.posts[1].comments);
+
+
 
 // App css
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-  <Router history={hashHistory}>
-    <Route path="/" component={Main}>
-      <Route path="articles" component={BlogApp}/>
-        <Route path="articles/:articleId" component={PostDetail}/>
-      <Route path="about" component={About}/>
-      <IndexRoute component={BlogApp}/>
-    </Route>
-  </Router>,
-    document.getElementById('app')
+  <div>
+    {router}
+  </div>,
+  document.getElementById('app')
 );
+
+// require('./redux-example.jsx');
