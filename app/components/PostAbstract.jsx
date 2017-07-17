@@ -12,7 +12,7 @@ export class Post extends React.Component {
           </Link>
           <div>{post.author}</div>
           <div>{post.date}</div>
-          <div>{post.text}</div>
+          <div>{post.text.substring(0, 200)}...<Link to={`/articles/${post.id}`}>阅读全文</Link></div>
           <div>
             <button onClick={this.props.increment.bind(null, i)} className="button small">&hearts; {post.likes}</button>
             <span>

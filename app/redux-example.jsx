@@ -1,4 +1,5 @@
 import redux from 'redux';
+import jsonData from 'json-loader!./article/data.json';
 
 console.log('Starting redux!')
 
@@ -11,8 +12,7 @@ store.subscribe(() => {
   console.log('New State', store.getState());
 });
 
-console.log('currentState', store.getState());
+console.log('initialState', store.getState());
 
+store.dispatch(actions.activePost(1));
 store.dispatch(actions.addComment('Like'));
-store.dispatch(actions.addComment('Me too'));
-store.dispatch(actions.addComment('Same here'));

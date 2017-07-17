@@ -1,47 +1,19 @@
 import React from 'react';
-
-import jsonData from 'json-loader!../article/data.json';
-import AddComment from 'AddComment';
-import Comment from 'Comment';
-import CommentList from 'CommentList';
+import Post from 'Post';
 
 export class PostDetail extends React.Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      articleId: "",
-      posts: []
-    }
-  }
-
-  componentWillMount() {
-    this.setState({
-      articleId: this.props.params.articleId,
-      posts: jsonData.posts
-    });
-  }
-
   render () {
-    var id = this.state.articleId;
-    var {title, date, author, text, comments} = this.state.posts[this.state.articleId];
-    var styles = {
-    	color:'red',
-    	fontWeight:'bold'
-    };
-
+    // const i = this.props.posts.findIndex((post) => post.id === this.props.params.postId);
+    const i = this.props.params.postId
+    const post = this.props.posts[i];
     return (
       <div>
-        Post Detail
-        <p>This is article {id}</p>
-        <div style={styles}>{title}</div>
-        <div>{date}</div>
-        <div>{author}</div>
-        <p>{text}</p>
-        <AddComment/>
-        <CommentList comments={comments}/>
+        <Post i={i} post={post} {...this.props}/>
       </div>
     );
   };
 };
+
+
 
 export default PostDetail;

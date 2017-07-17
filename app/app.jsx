@@ -2,27 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import * as actions from 'actions';
-import jsonData from 'json-loader!./article/data.json';
-// var store = require('configStore').configure();
 import router from 'app/router/';
+import store from './store/configStore';
+
+store.subscribe(() => {
+  var state = store.getState();
+
+  console.log('New State => ', store.getState());
+});
+
+// store.dispatch(actions.activePost(0));
 
 // Load foundation
 $(document).foundation();
-
-console.log('initialState', jsonData.posts);
-console.log('Post 0 comments', jsonData.posts[0].comments);
-console.log('Post 1 comments', jsonData.posts[1].comments);
-
-
 
 // App css
 require('style!css!sass!applicationStyles')
 
 ReactDOM.render(
-  <div>
+  <Provider store={store}>
     {router}
-  </div>,
+  </Provider>,
   document.getElementById('app')
 );
 
