@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
+import moment from 'node-moment';
 
 export const posts = (state = [], action) => {
   switch (action.type) {
@@ -20,11 +21,12 @@ export const postComments = (state = [], action) => {
   switch (action.type) {
     case 'ADD_COMMENT':
       return [
-        ...state,
         {
           user: action.author,
+          date: moment().unix(),
           text: action.comment
-        }
+        },
+        ...state
       ];
     case 'REMOVE_COMMENT':
       return [

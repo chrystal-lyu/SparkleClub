@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Post from 'Post';
-import CommentList from 'CommentList';
 import Comment from 'Comment';
 
 export class PostDetail extends React.Component {

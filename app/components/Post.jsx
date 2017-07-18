@@ -10,11 +10,18 @@ export class Post extends React.Component {
           <Link to={`/articles/${post.id}`}>
             {post.title}
           </Link>
-          <div>{post.author}</div>
+          <div>作者：{post.author}</div>
           <div>{post.date}</div>
-          <div>{post.text}</div>
           <div>
-            <button onClick={this.props.increment.bind(null, i)} className="button small">&hearts; {post.likes}</button>
+            <img src={post.photo_src} alt={post.title} />
+          </div>
+          {
+            post.text.split("\n\n").map(x => {
+              return <p>{x}</p>
+            })
+          }
+          <div>
+            <button onClick={this.props.increment.bind(null, i)} className="button hollow">赞</button>
             <span>
               &#128150; {post.likes}
             </span>
