@@ -32,16 +32,18 @@ export class Comment extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const {postId} = this.props.params;
-    const author = this.refs.author.value;
+    // const author = this.refs.author.value;
     const comment = this.refs.comment.value;
-    if (author.length === 0) {
-      alert('请输入名字');
-    } else if(comment.length === 0) {
-      alert('请输入评论');
-    } else if(author.length > 0 && comment.length > 0) {
-      this.props.addComment(postId, author, comment);
-      this.refs.commentForm.reset();
-    }
+    // if (author.length === 0) {
+    //   alert('请输入名字');
+    // } else if(comment.length === 0) {
+    //   alert('请输入评论');
+    // } else if(author.length > 0 && comment.length > 0) {
+    //   this.props.addComment(postId, comment);
+    //   this.refs.commentForm.reset();
+    // }
+    this.props.startAddComment(postId, comment);
+    this.refs.commentForm.reset();
   }
 
   render () {
@@ -49,7 +51,7 @@ export class Comment extends React.Component {
     return (
       <div>
         <form ref="commentForm" onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" ref="author" placeholder = "author"/>
+          {/*<input type="text" ref="author" placeholder = "author"/>*/}
           <textarea rows="5" type="text" ref="comment" placeholder = "comment"/>
           <button className="button" type="submit">发表</button>
         </form>

@@ -1,18 +1,15 @@
 import * as redux from 'redux';
 import {syncHistoryWithStore} from 'react-router-redux';
 import {browserHistory} from 'react-redux';
-var thunk = require('redux-thunk').default;
+import thunk from 'redux-thunk';
 
-// import the root reducer
+import {firebaseRef} from 'app/firebase/';
 import rootReducer from 'reducers';
-import comments from './../data/comments';
+// import comments from './../data/comments';
 import posts from './../data/posts';
 
 // create an object for the defualt data
-const defaultState = {
-  posts,
-  comments
-};
+export const defaultState = {};
 
 const store = redux.createStore(rootReducer, defaultState, redux.compose(
   redux.applyMiddleware(thunk),

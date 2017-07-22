@@ -1,25 +1,31 @@
 import React from 'react';
 import {Link} from 'react-router';
+import uuid from 'node-uuid';
 
 export class Post extends React.Component {
+  componentWillMount () {
+    console.log('Post state: ', this.state);
+    console.log('Post props:', this.props);
+  }
+
   render () {
-    const {post, i, comments} = this.props;
     return (
-      <div className="row">
+      <div>
+        <div> I am a full post</div>
+      </div>
+      
+
+      /*<div className="row">
         <div className="column">
-          <Link to={`/articles/${post.id}`}>
-            {post.title}
-          </Link>
+          <div>{post.title}</div>
           <div>作者：{post.author}</div>
           <div>{post.date}</div>
           <div>
             <img src={post.photo_src} alt={post.title} />
           </div>
-          {
-            post.text.split("\n\n").map(x => {
-              return <p>{x}</p>
-            })
-          }
+          <div>
+          {post.text.split("\n\n").map(x => <p key={uuid()}>{x}</p>)}
+          </div>
           <div>
             <button onClick={this.props.increment.bind(null, i)} className="button hollow">赞</button>
             <span>
@@ -30,7 +36,8 @@ export class Post extends React.Component {
             </span>
           </div>
         </div>
-      </div>
+      </div>*/
+
     )
   }
 };
