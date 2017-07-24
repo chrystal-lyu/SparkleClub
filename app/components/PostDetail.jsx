@@ -6,8 +6,26 @@ import firebase, {firebaseRef} from 'app/firebase/';
 import Post from 'Post';
 
 export class PostDetail extends React.Component {
-  componentWillMount() {
-    this.props.currentPostId(parseInt(this.props.params.postId));
+  constructor(props) {
+    super(props)
+    this.state = {
+        posts: [],
+        comments: []
+    };
+  }
+
+  componentDidMount() {
+    this.props.startFetchPosts().then(
+      this.setState({
+        posts: this.props.posts
+      })
+    );
+
+    this.props.startFetchComments().then(
+      this.setState({
+        posts: this.props.comments
+      })
+    );
   }
 
   renderComment(comment, i) {
@@ -42,6 +60,7 @@ export class PostDetail extends React.Component {
     const comment = this.refs.comment.value;
     if (comment.length > 0) {
       this.props.startAddComment(postId, comment);
+      this.props.startFetchComments();
       this.refs.commentForm.reset();
     } else {
       alert ('请输入评论')
@@ -52,12 +71,8 @@ export class PostDetail extends React.Component {
     const i = this.props.posts.findIndex((post) => post.id === this.props.params.postId);
     const post = this.props.posts[i];
     const postComments = this.props.comments[i] || [];
-    console.log(this.props)
-    console.log(i);
     return (
-      <div>
-        <Post i={i} post={post} key={i} {...this.props}/>
-        {/*<Post i={i} post={post} key={i} {...this.props}/>*/}
+      <div>{post ? <Post i={i} post={post} key={i} {...this.props}/> : "正在加载"}
         <div>
           {postComments.map(this.renderComment.bind(this))}
         </div>

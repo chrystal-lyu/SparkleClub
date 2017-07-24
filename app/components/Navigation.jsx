@@ -8,7 +8,7 @@ export class Navigation extends React.Component {
         <div className="top-bar-left">
           <ul className="menu">
             <li className="menu-text">
-              神奇部落
+              火花社
             </li>
             <li>
               <IndexLink to="/articles" activeClassName="active-link">博文</IndexLink>

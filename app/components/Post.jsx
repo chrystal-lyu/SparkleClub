@@ -3,19 +3,10 @@ import {Link} from 'react-router';
 import uuid from 'node-uuid';
 
 export class Post extends React.Component {
-  componentWillMount () {
-    console.log('Post state: ', this.state);
-    console.log('Post props:', this.props);
-  }
-
   render () {
+    const {post, i, comments} = this.props;
     return (
-      <div>
-        <div> I am a full post</div>
-      </div>
-      
-
-      /*<div className="row">
+      <div className="row">
         <div className="column">
           <div>{post.title}</div>
           <div>作者：{post.author}</div>
@@ -36,7 +27,7 @@ export class Post extends React.Component {
             </span>
           </div>
         </div>
-      </div>*/
+      </div>
 
     )
   }

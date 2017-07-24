@@ -15,10 +15,10 @@ store.subscribe(() => {
   console.log('New State => ', state);
 });
 
-firebaseRef.on('value', (snapshot) => {
-  store.dispatch(actions.startFetchPosts());
-  store.dispatch(actions.startFetchComments());
-});
+// firebaseRef.on('value', (snapshot) => {
+//   store.dispatch(actions.startFetchPosts());
+//   store.dispatch(actions.startFetchComments());
+// });
 
 // Load foundation
 $(document).foundation();

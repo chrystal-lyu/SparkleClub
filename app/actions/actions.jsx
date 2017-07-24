@@ -75,18 +75,10 @@ export const startFetchComments = () => {
           });
         });
 
-        // console.log('parsedComments '+i, parsedComments);
         allComments.push(parsedComments);
       }
       dispatch(fetchComments(allComments));
     });
-  };
-};
-
-export const currentPostId = (id) => {
-  return {
-    type: 'CURRENT_POST_ID',
-    id
   };
 };
 
