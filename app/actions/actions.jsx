@@ -20,10 +20,25 @@ export const startFetchPosts = () => {
   };
 };
 
-export const increment = (index) => {
+export const increment = (postId) => {
   return {
     type: 'INCREMENT_LIKES',
-    index
+    postId
+  };
+};
+
+export const startIncrement = (postId) => {
+  return (dispatch) => {
+    const postRef = firebaseRef.child(`posts/${postId}`);
+    postRef.transaction((post) => {
+      if (post) {
+        if(post.likes) {
+          post.likes++;
+        }
+      dispatch(increment(postId));
+      };
+      return post;
+    });
   };
 };
 
@@ -42,14 +57,7 @@ export const startAddComment = (postId, text) => {
       date: moment().unix()
     };
 
-    const commentRef = firebaseRef.child(`comments/${postId}`).push(comment);
-
-    return commentRef.then(() => {
-      dispatch(addComment({
-        ...comment,
-        id: commentRef.key
-      }));
-    });
+    firebaseRef.child(`comments/${postId}`).push(comment);
   };
 };
 
@@ -71,10 +79,10 @@ export const startFetchComments = () => {
 
         Object.keys(comments).forEach((commentId) => {
           parsedComments.push({
-            ...comments[commentId]
+            ...comments[commentId],
+            id: commentId
           });
         });
-
         allComments.push(parsedComments);
       }
       dispatch(fetchComments(allComments));
@@ -82,10 +90,18 @@ export const startFetchComments = () => {
   };
 };
 
-export const removeComment = (postId, i) => {
+export const removeComment = (postId, commentIndex) => {
   return {
     type: 'REMOVE_COMMENT',
     postId,
-    i
+    commentIndex
+  };
+};
+
+export const startRemoveComment = (postId, commentId, commentIndex) => {
+  return (dispatch) => {
+    const commentsRef = firebaseRef.child('comments');
+    dispatch(removeComment(postId, commentIndex));
+    return commentsRef.child(`${postId}/${commentId}`).remove();
   };
 };

@@ -17,7 +17,8 @@ export class Post extends React.Component {
             <div className="post-abstract-item" >{post.text.substring(0, 200)}...<Link className="post-abstract-readall" to={`/articles/${post.id}`}>阅读全文</Link></div>
             <div className="post-abstract-item" >作者：{post.author} {post.date}</div>
             <div className="post-abstract-item" >
-              <button onClick={this.props.increment.bind(null, i)} className="button button-like">赞</button>
+              <button onClick={this.props.startIncrement.bind(null, i)} className="button button-like">赞</button>
+
               <span className="post-abstract-likes">
                 &#128150; {post.likes}
               </span>

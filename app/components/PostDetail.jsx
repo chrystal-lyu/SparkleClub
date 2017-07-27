@@ -15,20 +15,20 @@ export class PostDetail extends React.Component {
   }
 
   componentDidMount() {
+    this.props.startFetchComments().then(
+      this.setState({
+        comments: this.props.comments
+      })
+    );
+
     this.props.startFetchPosts().then(
       this.setState({
         posts: this.props.posts
       })
     );
-
-    this.props.startFetchComments().then(
-      this.setState({
-        posts: this.props.comments
-      })
-    );
   }
 
-  renderComment(comment, i) {
+  _renderComment(comment, i) {
     const renderDate = () => {
       if(typeof(comment.date) === 'string') {
         return comment.date
@@ -36,8 +36,9 @@ export class PostDetail extends React.Component {
         return moment.unix(comment.date).format('MMM Do YYYY @ h:mm a')
       }
     };
+
     return (
-      <div className="callout" key={uuid()}>
+      <div className="callout" key={comment.id}>
         <div>
           <strong>{comment.user}</strong>
         </div>
@@ -47,14 +48,14 @@ export class PostDetail extends React.Component {
         <div>
           {comment.text}
         </div>
-        <button onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>
+        <button onClick={this.props.startRemoveComment.bind(null, this.props.params.postId, comment.id, i)}>
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     )
   }
 
-  handleSubmit(e) {
+  _handleSubmit(e) {
     e.preventDefault();
     const {postId} = this.props.params;
     const comment = this.refs.comment.value;
@@ -74,10 +75,10 @@ export class PostDetail extends React.Component {
     return (
       <div>{post ? <Post i={i} post={post} key={i} {...this.props}/> : "正在加载"}
         <div>
-          {postComments.map(this.renderComment.bind(this))}
+          {postComments.map(this._renderComment.bind(this))}
         </div>
         <div>
-          <form ref="commentForm" onSubmit={this.handleSubmit.bind(this)}>
+          <form ref="commentForm" onSubmit={this._handleSubmit.bind(this)}>
             <textarea rows="5" type="text" ref="comment" placeholder = "comment"/>
             <button className="button" type="submit">发表</button>
           </form>
