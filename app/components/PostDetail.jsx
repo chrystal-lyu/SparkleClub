@@ -38,19 +38,19 @@ export class PostDetail extends React.Component {
     };
 
     return (
-      <div className="callout" key={comment.id}>
-        <div>
-          <strong>{comment.user}</strong>
+      <div className="comment-single" key={comment.id}>
+          <button className="comment-single-close" onClick={this.props.startRemoveComment.bind(null, this.props.params.postId, comment.id, i)}></button>
+        <div className="comment-single-text">
+          <div>
+            <strong>{comment.user}</strong>
+          </div>
+          <div>
+            {renderDate()}
+          </div>
+          <div>
+            {comment.text}
+          </div>
         </div>
-        <div>
-          {renderDate()}
-        </div>
-        <div>
-          {comment.text}
-        </div>
-        <button onClick={this.props.startRemoveComment.bind(null, this.props.params.postId, comment.id, i)}>
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
     )
   }
@@ -74,15 +74,18 @@ export class PostDetail extends React.Component {
     const postComments = this.props.comments[i] || [];
     return (
       <div>{post ? <Post i={i} post={post} key={i} {...this.props}/> : "正在加载"}
-        <div>
-          {postComments.map(this._renderComment.bind(this))}
+        <div className="comment-area">
+          <div className="comment-box">
+            <form ref="commentForm" onSubmit={this._handleSubmit.bind(this)}>
+              <textarea rows="5" type="text" ref="comment" placeholder = "请输入评论"/>
+              <button className="button button-comment" type="submit">发表</button>
+            </form>
+          </div>
+          <div className="comment-list">
+            {postComments.map(this._renderComment.bind(this))}
+          </div>
         </div>
-        <div>
-          <form ref="commentForm" onSubmit={this._handleSubmit.bind(this)}>
-            <textarea rows="5" type="text" ref="comment" placeholder = "comment"/>
-            <button className="button" type="submit">发表</button>
-          </form>
-        </div>
+
       </div>
     );
   };

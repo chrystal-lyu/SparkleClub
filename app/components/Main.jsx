@@ -9,12 +9,19 @@ export class Main extends React.Component {
   render() {
     return (
       <div>
-        <Navigation/>
-          <div className="row">
-            <div className="column">
-              {React.cloneElement(this.props.children, this.props)}
-            </div>
+        <div className="nav">
+          <Navigation/>
+        </div>
+        <div className="row">
+          <div className="column">
+            {React.cloneElement(this.props.children, this.props)}
           </div>
+        </div>
+        <footer>
+          <div>
+            Footer placeholder
+          </div>
+        </footer>
       </div>
     )
   }

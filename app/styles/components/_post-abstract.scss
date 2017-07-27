@@ -1,5 +1,30 @@
+body {
+  background-color: #dfdfdf;
+}
+
+.content {
+  background-color: white;
+}
+
+.row {
+
+}
+
+.column {
+  padding: 0;
+  margin-top: 100px;
+
+}
+
+.button-like {
+  outline: none;
+}
+
+.button-like:hover {
+  color: #f08080;
+}
+
 .post-abstract-column {
-  padding: 0px, auto;
   margin: 10px auto;
   width: auto;
   height: 250px;
@@ -8,35 +33,16 @@
 .post-abstract-right {
   width: 80%;
   height: 100%;
-  padding: 10px;
+  padding: 15px 30px 15px 15px;
   float: right;
 }
 
 .post-abstract-left img {
   margin-top: 10px;
+  padding: 10px 10px 10px 30px;
   width: 20%;
   height: 100%;
   float: left;
-}
-
-.button-like {
-  width: 50px;
-  background: transparent;
-  border: 1.5px solid pink;
-  border-radius: 50px;
-  margin-right: 10px;
-  color: pink;
-  font-weight: bold;
-}
-
-.button-like:hover {
-  background: pink;
-  color: white;
-}
-
-.button-like:focus {
-  color: pink;
-  background: white;
 }
 
 .post-abstract-likes {
@@ -48,11 +54,12 @@
 }
 
 .post-abstract-title{
-  color: black;
+  color: #f08080;
   font-size: 1.2rem;
   font-weight: bold;
 }
 
 .post-abstract-readall {
-  color: #2199e8;
+  font-size: 1rem;
+  color: #f08080;
 }

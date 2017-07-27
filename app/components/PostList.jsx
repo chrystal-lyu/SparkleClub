@@ -27,7 +27,7 @@ export class PostList extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="content">
         {this.props.posts.map((post, i) =>
           <PostAbstract {...this.props} key={i} i={i} post={post}/>)}
       </div>

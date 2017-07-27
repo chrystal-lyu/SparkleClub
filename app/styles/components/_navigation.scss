@@ -1,29 +1,38 @@
+.nav {
+  width: 100%;
+   position: fixed;
+}
+
 .top-bar {
-  background-color: #939393;
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 0 100px;
 }
 
 .menu-text {
-  background-color: #939393;
-  color: white;
+  background-color: white;
+  font-size: 1.3rem;
+  color: #f08080;
 }
 
 .nagivation-text {
-  background-color: #939393;
+  background-color: white;
   color: white;
 }
 
 .menu {
-  background-color: #939393;
+  background-color: white;
 }
 
 li {
-  background-color: #939393;
+  background-color: white;
 }
 
 a {
-  color: white;
+  font-size: 1.2rem;
+  color: grey;
 }
 
 a:focus {
-  color: white;
+  color: #f08080;
 }

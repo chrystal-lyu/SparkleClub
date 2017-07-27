@@ -25,8 +25,8 @@ export const commentsReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_COMMENT':
       return [
-        ...state,
-        action.comment
+        action.comment,
+        ...state
       ];
     case 'REMOVE_COMMENT':
       const postIndex = parseInt(action.postId);

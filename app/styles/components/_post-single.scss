@@ -1,0 +1,36 @@
+.post-single {
+  padding: 15px 30px 15px 30px;
+}
+
+.comment-area {
+  margin-top: 30px;
+}
+
+.button {
+  background-color: #f08080;
+  outline: none;
+}
+
+.button:hover {
+  background-color: grey;
+}
+
+.button:focus {
+  background-color: #f08080;
+}
+
+.comment-list {
+  background-color: white;
+}
+
+.comment-single {
+  padding: 20px;
+}
+
+.comment-single-close {
+  display:block;
+  float:right;
+  width:30px;
+  height:29px;
+  background:url(http://www.htmlgoodies.com/img/registrationwelcome/close_icon.png) no-repeat center center;
+}
