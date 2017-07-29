@@ -41,9 +41,27 @@ export const commentsReducer = (state = [], action) => {
   };
 };
 
+export var authReducer = (state = {}, action) => {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        uid: action.uid,
+        userName: action.userName,
+        isUserLoggedIn: true
+      }
+    case 'LOGOUT':
+      return {
+        isUserLoggedIn: false
+      };
+    default:
+      return state;
+  }
+};
+
 const rootReducer = combineReducers({
   posts: postsReducer,
   comments: commentsReducer,
+  auth: authReducer,
   routing: routerReducer
 });
 

@@ -1,6 +1,6 @@
 import moment from 'node-moment';
 import uuid from 'node-uuid';
-import firebase, {firebaseRef} from 'app/firebase/';
+import firebase, {firebaseRef, googleProvider} from 'app/firebase/';
 import store from 'configStore';
 
 export const fetchPosts = (posts) => {
@@ -51,9 +51,10 @@ export const addComment = (comment) => {
 
 export const startAddComment = (postId, text) => {
   return (dispatch, getState) => {
+    const userName = store.getState().auth.userName;
     const comment = {
       text,
-      user: 'Crystal',
+      user: userName ? userName : '匿名用户',
       date: moment().unix()
     };
 
@@ -103,5 +104,37 @@ export const startRemoveComment = (postId, commentId, commentIndex) => {
     const commentsRef = firebaseRef.child('comments');
     dispatch(removeComment(postId, commentIndex));
     return commentsRef.child(`${postId}/${commentId}`).remove();
+  };
+};
+
+export const login = (uid, userName) => {
+  return {
+    type: 'LOGIN',
+    uid,
+    userName
+  };
+};
+
+export const startLogin = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signInWithPopup(googleProvider).then((result) => {
+      console.log('Auth worked!', result)
+    }, (error) => {
+      console.log('Unable to auth', error);
+    });
+  };
+};
+
+export const logout = () => {
+  return {
+    type: 'LOGOUT'
+  };
+};
+
+export const startLogout = () => {
+  return (dispatch, getState) => {
+    return firebase.auth().signOut().then(() => {
+      alert('You have successfully logged out')
+    });
   };
 };

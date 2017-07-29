@@ -6,6 +6,11 @@ import Navigation from 'Navigation';
 import * as actions from 'actions';
 
 export class Main extends React.Component {
+  componentDidMount() {
+    this.props.startFetchPosts();
+    this.props.startFetchComments();
+  }
+
   render() {
     return (
       <div>
