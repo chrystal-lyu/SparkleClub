@@ -49,25 +49,27 @@ export class Navigation extends React.Component {
     }
 
     return (
-      <div className="top-bar">
-        <div className="top-bar-left">
-          <ul className="menu">
-            <li>
-              <img src="http://jiangtianzheng.com/wp-content/uploads/2017/06/big-icon.jpg" width="120px"/>
-            </li>
-            <li className="menu-text">
-              火花社 x 全职高手
-            </li>
-            <li className="menu-text">
-              <IndexLink to="/articles" activeClassName="active-link">博文</IndexLink>
-            </li>
-            <li className="menu-text">
-              <Link to="/about" activeClassName="active-link">关于</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="top-bar-right">
-          {renderLogin()}
+      <div>
+        <div className="top-bar" id="main-nav">
+          <div className="top-bar-left">
+            <ul className="dropdown menu">
+              <li>
+                <img src="http://jiangtianzheng.com/wp-content/uploads/2017/06/big-icon.jpg" width="120px"/>
+              </li>
+              <li className="menu-text">
+                火花社 x 全职高手
+              </li>
+              <li className="menu-text">
+                <IndexLink to="/articles" activeClassName="active-link">博文</IndexLink>
+              </li>
+              <li className="menu-text">
+                <Link to="/about" activeClassName="active-link">关于</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="top-bar-right">
+            {renderLogin()}
+          </div>
         </div>
       </div>
     );

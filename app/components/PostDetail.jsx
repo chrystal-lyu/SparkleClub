@@ -6,28 +6,6 @@ import firebase, {firebaseRef} from 'app/firebase/';
 import Post from 'Post';
 
 export class PostDetail extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-        posts: [],
-        comments: []
-    };
-  }
-
-  componentDidMount() {
-    this.props.startFetchComments().then(
-      this.setState({
-        comments: this.props.comments
-      })
-    );
-
-    this.props.startFetchPosts().then(
-      this.setState({
-        posts: this.props.posts
-      })
-    );
-  }
-
   _renderComment(comment, i) {
     const renderDate = () => {
       if(typeof(comment.date) === 'string') {
@@ -85,7 +63,6 @@ export class PostDetail extends React.Component {
             {postComments.map(this._renderComment.bind(this))}
           </div>
         </div>
-
       </div>
     );
   };

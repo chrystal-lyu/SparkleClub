@@ -18,13 +18,13 @@ export class Main extends React.Component {
           <Navigation/>
         </div>
         <div className="row">
-          <div className="column">
+          <div className="column small-12 medium-12 large-12">
             {React.cloneElement(this.props.children, this.props)}
           </div>
         </div>
         <footer>
           <div>
-            Footer placeholder
+            Created by <strong className="highlighted-text">Crystal Lu</strong>
           </div>
         </footer>
       </div>
